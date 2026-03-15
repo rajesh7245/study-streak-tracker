@@ -2,10 +2,11 @@ import { NextResponse } from "next/server";
 import { prisma } from "../../../lib/prisma";
 import { calculateStreak } from "../../../lib/streakLogic";
 
-export async function GET() {
+export const runtime = "nodejs";
 
+export async function GET() {
   const studies = await prisma.study.findMany({
-    orderBy: { studyDate: "desc" }
+    orderBy: { studyDate: "desc" },
   });
 
   const dates = studies.map((s) =>
